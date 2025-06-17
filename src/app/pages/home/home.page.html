@@ -1,13 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Pokémon</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let p of pokemons">
+      <ion-thumbnail slot="start">
+        <img [src]="p.image" [alt]="p.name" />
+      </ion-thumbnail>
+      <ion-label>{{ p.name | titlecase }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
