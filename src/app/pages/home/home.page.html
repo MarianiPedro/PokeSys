@@ -5,12 +5,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
   <ion-list>
     <ion-item *ngFor="let p of pokemons">
-      <ion-thumbnail slot="start">
-        <img [src]="p.image" [alt]="p.name" />
-      </ion-thumbnail>
-      <ion-label>{{ p.name | titlecase }}</ion-label>
+      <ion-card>
+        <img [alt]="p.name" [src]="p.image" />
+        
+        <ion-card-header>
+          <ion-card-title>{{p.name | titlecase }}</ion-card-title>
+          <ion-card-subtitle>Tipos: {{ p.types.join(' / ') | titlecase | titlecase }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          Altura: {{p.height}} -  Largura: {{p.weight}}
+      
+        </ion-card-content>
+
+      </ion-card>
     </ion-item>
   </ion-list>
 </ion-content>
