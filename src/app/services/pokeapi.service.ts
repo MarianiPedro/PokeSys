@@ -18,4 +18,8 @@ export class PokeapiService {
     return this.http.get<any>(`${this.baseUrl}/pokemon/${nameOrId}`);
   }
 
+  getPokemonSpecies(nameOrId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/pokemon-species/${nameOrId}`);
+  }
+
 }
