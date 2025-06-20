@@ -12,15 +12,36 @@
         <img [alt]="p.name" [src]="p.image" />
         
         <ion-card-header>
-          <ion-card-title>{{p.name | titlecase }}</ion-card-title>
-          <ion-card-subtitle>Tipos: {{ p.types.join(' / ') | titlecase | titlecase }}</ion-card-subtitle>
+          <ion-card-title>#{{getNumberNationalDex(p.species) }} {{p.name | titlecase }}</ion-card-title>
+          <ion-card-subtitle>Types: {{ p.types.join(' / ') | titlecase}}</ion-card-subtitle>
+          <ion-card-subtitle>Category: {{ getGenus(p.species)  | titlecase}}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
-          Altura: {{p.height}} -  Largura: {{p.weight}}
-      
+          Height: {{ (p.height*.1).toFixed(2)}}m -  Weight: {{(p.weight*.1).toFixed(1)}}kg <br>
+          Habitat: {{p.species.habitat.name  | titlecase}} <br>
+          Legendary: <ion-icon 
+            [name]="p.species.is_legendary ? 'checkmark-circle' : 'close-circle'" [color]="p.species.is_legendary ? 'success' : 'danger'"  size="small">
+          </ion-icon> |  Mythical: <ion-icon 
+            [name]="p.species.is_mythical ? 'checkmark-circle' : 'close-circle'" [color]="p.species.is_mythical ? 'success' : 'danger'" size="small">
+          </ion-icon>
         </ion-card-content>
 
+        <ion-card-content>
+          <img alt="front_default" [src]="p.sprites.front_default" />
+          <img alt="front_shiny" [src]="p.sprites.front_shiny" />
+        </ion-card-content>
+          
+        <ion-card-content>
+          {{ getFlavorText(p.species) }}
+        </ion-card-content>
+        <ion-button 
+          [routerLink]="['/detalhes', p.id]" 
+          expand="block" 
+          size="small" 
+          fill="outline">
+          Detalhes
+        </ion-button>
       </ion-card>
     </ion-item>
   </ion-list>
