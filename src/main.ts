@@ -6,6 +6,15 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 import { provideHttpClient } from '@angular/common/http';
+import { addIcons } from 'ionicons';
+import { closeCircle, checkmarkCircle, heart, arrowUndoCircle, arrowUndoCircleOutline } from 'ionicons/icons';
+
+addIcons({
+  'close-circle': closeCircle,
+  'checkmark-circle': checkmarkCircle,
+  'heart': heart,
+  'arrow-undo-circle-outline': arrowUndoCircleOutline
+});
 
 bootstrapApplication(AppComponent, {
   providers: [
