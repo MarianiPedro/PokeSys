@@ -1,27 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>detalhes</ion-title>
+    <ion-title>Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" >
    <ion-button 
-      [routerLink]="['/home']" 
+      [routerLink]="['/home']"
       expand="block" 
       size="small" 
       fill="outline">
       <ion-icon
-         name="arrow-undo-circle-outline" color="success" size="small">
+         name="arrow-undo-circle-outline" color="primary" size="small">
       </ion-icon>
-      Voltar
+      Back
     </ion-button>
-  <ion-header>
-  <ion-toolbar>
-    <ion-title>Detalhes do Pokémon #{{ id }}</ion-title>
-  </ion-toolbar>
-</ion-header>
 
+    <ion-card *ngIf="pokemon">
+        <img [alt]="pokemon.name" [src]="pokemon.image" />
+        
+        <ion-card-header>
+          <ion-card-title>#{{getNumberNationalDex(pokemon.species) }} {{pokemon.name | titlecase }}</ion-card-title>
+          <ion-card-subtitle>Types: {{ pokemon.types.join(' / ') | titlecase}}</ion-card-subtitle>
+          <ion-card-subtitle>Category: {{ getGenus(pokemon.species)  | titlecase}}</ion-card-subtitle>
+        </ion-card-header>
 
-  <p>Carregando dados para o Pokémon {{ id }}...</p>
+        <ion-card-content>
+          Height: {{ (pokemon.height*.1).toFixed(2)}}m -  Weight: {{(pokemon.weight*.1).toFixed(1)}}kg <br>
+          Habitat: {{pokemon.species.habitat.name  | titlecase}} <br>
+          Legendary: <ion-icon 
+            [name]="pokemon.species.is_legendary ? 'checkmark-circle' : 'close-circle'" [color]="pokemon.species.is_legendary ? 'success' : 'danger'"  size="small">
+          </ion-icon> |  Mythical: <ion-icon 
+            [name]="pokemon.species.is_mythical ? 'checkmark-circle' : 'close-circle'" [color]="pokemon.species.is_mythical ? 'success' : 'danger'" size="small">
+          </ion-icon>
+        </ion-card-content>
 
+        <ion-card-content>
+          <img alt="front_default" [src]="pokemon.sprites.front_default" />
+          <img alt="front_shiny" [src]="pokemon.sprites.front_shiny" />
+        </ion-card-content>
+          
+        <ion-card-content>
+          {{ getFlavorText(pokemon.species) }}
+        </ion-card-content>
+      </ion-card>
 </ion-content>

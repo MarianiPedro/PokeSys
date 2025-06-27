@@ -7,13 +7,15 @@ import { AppComponent } from './app/app.component';
 
 import { provideHttpClient } from '@angular/common/http';
 import { addIcons } from 'ionicons';
-import { closeCircle, checkmarkCircle, heart, arrowUndoCircle, arrowUndoCircleOutline } from 'ionicons/icons';
+import { closeCircle, checkmarkCircle, heart, arrowUndoCircle, arrowUndoCircleOutline, readerOutline } from 'ionicons/icons';
 
 addIcons({
   'close-circle': closeCircle,
   'checkmark-circle': checkmarkCircle,
   'heart': heart,
-  'arrow-undo-circle-outline': arrowUndoCircleOutline
+  'arrow-undo-circle-outline': arrowUndoCircleOutline,
+  'reader-outline': readerOutline
+  
 });
 
 bootstrapApplication(AppComponent, {

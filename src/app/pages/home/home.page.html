@@ -8,41 +8,17 @@
   
   <ion-list>
     <ion-item *ngFor="let p of pokemons">
-      <ion-card>
+      <ion-thumbnail>
         <img [alt]="p.name" [src]="p.image" />
-        
-        <ion-card-header>
-          <ion-card-title>#{{getNumberNationalDex(p.species) }} {{p.name | titlecase }}</ion-card-title>
-          <ion-card-subtitle>Types: {{ p.types.join(' / ') | titlecase}}</ion-card-subtitle>
-          <ion-card-subtitle>Category: {{ getGenus(p.species)  | titlecase}}</ion-card-subtitle>
-        </ion-card-header>
-
-        <ion-card-content>
-          Height: {{ (p.height*.1).toFixed(2)}}m -  Weight: {{(p.weight*.1).toFixed(1)}}kg <br>
-          Habitat: {{p.species.habitat.name  | titlecase}} <br>
-          Legendary: <ion-icon 
-            [name]="p.species.is_legendary ? 'checkmark-circle' : 'close-circle'" [color]="p.species.is_legendary ? 'success' : 'danger'"  size="small">
-          </ion-icon> |  Mythical: <ion-icon 
-            [name]="p.species.is_mythical ? 'checkmark-circle' : 'close-circle'" [color]="p.species.is_mythical ? 'success' : 'danger'" size="small">
-          </ion-icon>
-        </ion-card-content>
-
-        <ion-card-content>
-          <img alt="front_default" [src]="p.sprites.front_default" />
-          <img alt="front_shiny" [src]="p.sprites.front_shiny" />
-        </ion-card-content>
-          
-        <ion-card-content>
-          {{ getFlavorText(p.species) }}
-        </ion-card-content>
-        <ion-button 
-          [routerLink]="['/detalhes', p.id]" 
-          expand="block" 
-          size="small" 
-          fill="outline">
-          Detalhes
-        </ion-button>
-      </ion-card>
+      </ion-thumbnail>
+      <ion-label>#{{getNumberNationalDex(p.species) }} {{p.name | titlecase }}</ion-label>
+      <ion-button color="details" [routerLink]="['/detalhes/', p.id]" >
+        <ion-icon name="reader-outline" color="primary" size="small"></ion-icon>
+        <ion-label color="primary">Details</ion-label>
+      </ion-button>
+      <ion-button color="favorite">
+        <ion-icon name="heart" color="danger" size="small"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
